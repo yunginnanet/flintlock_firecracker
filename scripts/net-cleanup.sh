@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
 source .env
-sudo virsh net-stop --network $LVNET
-sudo virsh net-destroy --network $LVNET
-sudo virsh net-undefine --network $LVNET
-sudo ip link delete $BRIDGE
-sudo ip link delete $TAPNAME
+echo "cleaning up any existing virtd network named $LVNET"
+sudo virsh net-destroy --network "$LVNET" || true
+sudo virsh net-undefine --network "$LVNET" || true
+sudo ip link delete $BRIDGE || true # should have no spaces
+sudo ip link delete $TAPNAME || true # should have no spaces

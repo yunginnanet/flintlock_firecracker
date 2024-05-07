@@ -3,4 +3,4 @@ TAPNAME=tap0
 LVNET=fintlock
 FCDIR="$HOME/.local/bin"
 CTRD="containerd-dev"
-NET_DEVICE="$(ip route show | awk '/default/ {print $5}')" # gateway interface
+GATEWAY_INTERFACE="$(ip route show | awk '/default/ {print $5}')"

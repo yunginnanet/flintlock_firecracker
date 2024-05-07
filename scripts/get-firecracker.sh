@@ -29,7 +29,7 @@ _res="$( ( ./tools/release.sh; ) | tail -n 1)"
 echo "$_res" | grep -i 'binaries placed'
 _dir="$(echo "$_res" | awk '{print $NF}')"
 install -b --mode +x --preserve-timestamps "$_dir/firecracker" "$FCDIR/firecracker"
-_fcv="$(firecracker --version);"
+_fcv="$(firecracker --version | head -n 1);"
 if ! echo "$_fcv" | grep -i macvtap; then echo "wrong version firecracker, not macvtap"; false; fi
 cd ..
 rm -vrf tmp
