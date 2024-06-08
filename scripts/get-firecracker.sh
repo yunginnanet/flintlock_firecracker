@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
+echo -n "checking for firecracker installation with macvtap enabled..."
+
 _fcv=$(firecracker --version 2>/dev/null)
 
-if echo "$_fcv" | grep -i macvtap; then exit 0; fi
+if echo -n "$_fcv" | grep -i macvtap >/dev/null; then echo "✅"; exit 0; else echo "❌"; fi
+
+echo "building firecracker with macvtap..."
 
 set -e
 source .env

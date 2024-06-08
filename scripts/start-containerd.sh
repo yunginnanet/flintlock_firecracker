@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 source .env
+echo "starting containerd..."
 sudo mkdir -p "/var/lib/$CTRD/snapshotter/devmapper" 2>/dev/null || true
 sudo mkdir -p "/run/$CTRD/" 2>/dev/null || true
 rm -vf "assets/user/$CTRD.toml" 2>/dev/null || true
