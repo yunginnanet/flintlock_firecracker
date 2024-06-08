@@ -17,10 +17,10 @@ if ! sudo screen -ls | grep -i "$CTRD"; then
 	echo "containerd didn't spawn in screen session"
 	false
 fi
-if ! sudo ps aux | grep -i containerd >/dev/null; then
+if ! sudo ps aux | grep -v grep | grep -i containerd >/dev/null; then
 	echo "waiting..."
 	sleep 5
-	sudo ps aux | grep -i containerd
+	sudo ps aux | grep -v grep | grep -i containerd
 fi
 if ! sudo ctr --address="/run/$CTRD/containerd.sock" --namespace="$LVNET" content ls; then
 	echo -e '\n\n\n\n'

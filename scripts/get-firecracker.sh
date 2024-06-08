@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo -n "checking for firecracker installation with macvtap enabled..."
+echo -n "checking for firecracker installation with macvtap enabled... "
 
 _fcv=$(firecracker --version 2>/dev/null)
 
@@ -32,7 +32,7 @@ cargo check
 _res="$( ( ./tools/release.sh; ) | tail -n 1)"
 echo "$_res" | grep -i 'binaries placed'
 _dir="$(echo "$_res" | awk '{print $NF}')"
-install -b --mode +x --preserve-timestamps "$_dir/firecracker" "$FCDIR/firecracker"
+install -b --mode +x --preserve-timestamps "$_dir/firecracker" "$BINDIR/firecracker"
 _fcv="$(firecracker --version | head -n 1);"
 if ! echo "$_fcv" | grep -i macvtap; then echo "wrong version firecracker, not macvtap"; false; fi
 cd ..
